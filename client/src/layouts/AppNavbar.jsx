@@ -35,6 +35,12 @@ export const AppNavbar = () => {
             >
               NEW ARRIVALS
             </Link>
+            <Link
+              to="/login"
+              className="active text-decoration-none text-dark border border-dark px-4"
+            >
+              LOGIN
+            </Link>
           </div>
           <div className="buttons"></div>
           <div className="hamburger">

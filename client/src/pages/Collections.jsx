@@ -1,7 +1,5 @@
-import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import hoodie from "../assets/images/1.jpg";
 import { BASE_URL, URLS } from "../contants";
 import instance from "../utils/api";
 export const Collections = () => {
