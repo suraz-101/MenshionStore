@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Route, Link } from "react-router-dom";
 import { Routes } from "react-router-dom";
+import { PrivateRoute } from "./components/PrivateRoute";
 import { AdminLayout } from "./layouts/AdminLayout";
 import { AppFooter } from "./layouts/AppFooter";
 import { AppLayout } from "./layouts/AppLayout";
@@ -16,11 +17,16 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { NewArrivals } from "./pages/NewArrivals";
 import { NotFound } from "./pages/NotFound";
+import { Register } from "./pages/Register";
 
 function App() {
   return (
     <>
       <Routes>
+        <Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
@@ -28,13 +34,33 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="newarrivals" element={<NewArrivals />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="login" element={<Login />} />
         </Route>
 
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<AdminPanel />} />
-          <Route path="products" element={<Products />} />
-          <Route path="users" element={<Users />} />
+          <Route
+            index
+            element={
+              <PrivateRoute role="admin">
+                <AdminPanel />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="products"
+            element={
+              <PrivateRoute role="admin">
+                <Products />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="users"
+            element={
+              <PrivateRoute role="admin">
+                <Users />
+              </PrivateRoute>
+            }
+          />
         </Route>
       </Routes>
     </>

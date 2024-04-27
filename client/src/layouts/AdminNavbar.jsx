@@ -1,11 +1,9 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 
 export const AdminNavbar = () => {
   const { pathname } = useLocation();
   const current = pathname.split("/")[2];
-  console.log(current);
 
   return (
     <>

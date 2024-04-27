@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoIcon from "../assets/images/logo.png";
 import { URLS } from "../contants";
 import instance from "../utils/api";
 import { setToken } from "../utils/session";
 import { Notify } from "../components/Notify";
+import { jwtDecode } from "jwt-decode";
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [credential, setCredentials] = useState({
     email: "",
     password: "",
@@ -18,8 +20,16 @@ export const Login = () => {
       console.log(credential);
 
       const response = await instance.post(URLS.LOGIN, credential);
-      console.log(response);
       setToken(response.data.message);
+      navigate("/admin");
+      // const { data } = await jwtDecode(response.data.message);
+      // console.log(data);
+
+      // if (data.role.includes("admin")) {
+      //   navigate("/admin");
+      // } else {
+      //   navigate("/");
+      // }
     } catch (err) {
       console.log("err", err);
       setError(err.response.data.message);
