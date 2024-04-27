@@ -14,8 +14,8 @@ route.get("/", async (req, res, next) => {
 
 route.post("/", userValidation, async (req, res, next) => {
   try {
-    // const userData = req.body;
     const result = await userController.registerUser(req.body);
+    console.log(req.body);
     res.json({ data: result });
   } catch (error) {
     next(error);

@@ -10,7 +10,7 @@ export const AdminNav = () => {
   };
 
   return (
-    <div className="col-lg-12 p-2 ">
+    <div className="col-lg-12 p-2 bg-light ">
       <div className="logo  d-flex justify-content-between align-items-center container ">
         <img src={logo} alt="" height="40px" width="150px" />
         <div className="logOutButton">

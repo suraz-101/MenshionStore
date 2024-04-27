@@ -12,10 +12,6 @@ export const AdminNavbar = () => {
         style={{ minHeight: "100vh" }}
       >
         <div className="d-flex flex-column flex-shrink-0 p-3 text-white scrollbar">
-          <div className="logo mb-3 d-flex justify-content-center">
-            <img src={logo} alt="" height="40px" width="150px" />
-          </div>
-          <hr />
           <div>
             {" "}
             <ul className="nav nav-pills flex-column mb-auto p-3  ">

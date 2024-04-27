@@ -4,7 +4,7 @@ import { getToken } from "./session";
 
 const instance = axios.create({
   baseURL: BASE_URL,
-  timeout: 5000,
+  timeout: 10000,
   headers: { token: getToken("token") },
 });
 

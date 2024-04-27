@@ -1,7 +1,33 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logoIcon from "../assets/images/logo.png";
+import { Notify } from "../components/Notify";
+import { URLS } from "../contants";
+import instance from "../utils/api";
 
 export const Register = () => {
+  const navigate = useNavigate();
+  const [payload, setPayload] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    gender: "",
+  });
+
+  const [error, setrError] = useState("");
+  //   const [success, setSuccess] = useState("");
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await instance.post(URLS.REGISTER, payload);
+      navigate("/login");
+      console.log(response);
+    } catch (err) {
+      setrError(err);
+    }
+  };
   return (
     <div>
       <div>
@@ -31,7 +57,14 @@ export const Register = () => {
                     </Link>
                     <h3>Regsiter Now</h3>
                   </div>
-                  <form action="" className="col-12" id="registerUser">
+                  <form
+                    action=""
+                    className="col-12"
+                    id="registerUser"
+                    onSubmit={(e) => {
+                      handleSubmit(e);
+                    }}
+                  >
                     <div className="row container">
                       <div className="mb-3">
                         <label className="form-label">Full Name</label>
@@ -41,6 +74,11 @@ export const Register = () => {
                           id="exampleInputName"
                           placeholder="Cristiano Ronaldo  "
                           name="name"
+                          onChange={(e) => {
+                            setPayload((prevVal) => {
+                              return { ...prevVal, name: e.target.value };
+                            });
+                          }}
                           required
                         />
                       </div>
@@ -52,6 +90,11 @@ export const Register = () => {
                           id="exampleInputEmail"
                           placeholder=" crish7@gmail.com"
                           name="email"
+                          onChange={(e) => {
+                            setPayload((prevVal) => {
+                              return { ...prevVal, email: e.target.value };
+                            });
+                          }}
                           required
                         />
                       </div>
@@ -63,18 +106,14 @@ export const Register = () => {
                           id="exampleInputPassword"
                           placeholder="Password"
                           name="password"
+                          onChange={(e) => {
+                            setPayload((prevVal) => {
+                              return { ...prevVal, password: e.target.value };
+                            });
+                          }}
                           // onKeyUp={"validation()"}
                           required
                         />
-                        {/* <div
-                          id="passwordValidation "
-                          className="passwordValidation text-white p-4"
-                        >
-                          <p id="char">Required at least 9 char</p>
-                          <p id="symbol">Required at least 1 symbol</p>
-                          <p id="capital">Required at least 1 Uppercase</p>
-                          <p id="number">Required at least 1 number</p>
-                        </div> */}
                       </div>
                       <div className="mb-3">
                         <label className="form-label">Phone Number</label>
@@ -84,6 +123,14 @@ export const Register = () => {
                           id="exampleInputPhonenumber"
                           placeholder="984XXXXXX"
                           name="phoneNumber"
+                          onChange={(e) => {
+                            setPayload((prevVal) => {
+                              return {
+                                ...prevVal,
+                                phoneNumber: e.target.value,
+                              };
+                            });
+                          }}
                           required
                         />
                       </div>
@@ -96,6 +143,14 @@ export const Register = () => {
                               name="gender"
                               value="Male"
                               className="exampleInputGender"
+                              onChange={(e) => {
+                                setPayload((prevVal) => {
+                                  return {
+                                    ...prevVal,
+                                    gender: e.target.value,
+                                  };
+                                });
+                              }}
                             />
                             <label className="form-label">Male</label>
                           </div>
@@ -105,6 +160,14 @@ export const Register = () => {
                               name="gender"
                               value="Female"
                               className="exampleInputGender"
+                              onChange={(e) => {
+                                setPayload((prevVal) => {
+                                  return {
+                                    ...prevVal,
+                                    gender: e.target.value,
+                                  };
+                                });
+                              }}
                             />
                             <label className="form-label">Female</label>
                           </div>
@@ -114,12 +177,22 @@ export const Register = () => {
                               name="gender"
                               value="Others"
                               className="exampleInputGender"
+                              onChange={(e) => {
+                                setPayload((prevVal) => {
+                                  return {
+                                    ...prevVal,
+                                    gender: e.target.value,
+                                  };
+                                });
+                              }}
                             />
                             <label className="form-label">Others</label>
                           </div>
                         </div>
                       </div>
-                      <div className="text-center"></div>
+                      <div className="text-center">
+                        {error && <Notify variant="danger" msg={error} />}
+                      </div>
 
                       <button
                         type="submit"

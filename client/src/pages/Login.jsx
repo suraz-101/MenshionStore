@@ -22,14 +22,6 @@ export const Login = () => {
       const response = await instance.post(URLS.LOGIN, credential);
       setToken(response.data.message);
       navigate("/admin");
-      // const { data } = await jwtDecode(response.data.message);
-      // console.log(data);
-
-      // if (data.role.includes("admin")) {
-      //   navigate("/admin");
-      // } else {
-      //   navigate("/");
-      // }
     } catch (err) {
       console.log("err", err);
       setError(err.response.data.message);

@@ -7,7 +7,7 @@ export const PrivateRoute = ({ children, role = "" }) => {
       {isLoggedIn() & isValidRole(role) ? (
         children
       ) : (
-        <Navigate replace to="/login" />
+        <Navigate replace to="/" />
       )}
     </>
   );
