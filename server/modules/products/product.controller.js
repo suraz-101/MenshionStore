@@ -1,7 +1,10 @@
 const productSchema = require("./product.model");
 
 const createProduct = (payload) => {
-  return productSchema.create(payload);
+  const product = productSchema.create(payload);
+  console.log(product)
+  // if (!product) throw new Error("Product could not upload!");
+  return "product added successfully";
 };
 
 const getAllProduct = async (search, page = 1, limit = 20) => {
@@ -37,7 +40,7 @@ const getAllProduct = async (search, page = 1, limit = 20) => {
     },
     {
       $project: {
-        _id: 1,
+        _id: 0,
         name: 1,
         discount: 1,
         price: 1,
@@ -86,8 +89,8 @@ const getProductById = (_id) => {};
 
 const updateProduct = (_id, payload) => {};
 
-const deleteProduct = (_id) => {
-  return productSchema.deleteOne({ _id });
+const deleteProduct = (name) => {
+  return productSchema.deleteOne({ name });
 };
 
 module.exports = {

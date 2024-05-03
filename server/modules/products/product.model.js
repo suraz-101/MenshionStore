@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types;
 const productSchema = new mongoose.Schema({
-  name: { type: String, required: [true, "Name must be provided"] },
+  name: {
+    type: String,
+    required: [true, "Name must be provided"],
+    unique: true,
+  },
+
   price: {
     type: Number,
     required: [true, "Please give the price of the product"],

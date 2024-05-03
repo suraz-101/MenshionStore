@@ -8,6 +8,7 @@ import { AppFooter } from "./layouts/AppFooter";
 import { AppLayout } from "./layouts/AppLayout";
 import { AppNavbar } from "./layouts/AppNavbar";
 import { About } from "./pages/About";
+import { AddProduct } from "./pages/admin/AddProduct";
 import { AdminPanel } from "./pages/admin/AdminPanel";
 import { Products } from "./pages/admin/Products";
 import { Users } from "./pages/admin/Users";
@@ -33,8 +34,8 @@ function App() {
           <Route path="collection" element={<Collections />} />
           <Route path="contact" element={<Contact />} />
           <Route path="newarrivals" element={<NewArrivals />} />
-          <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
 
         <Route path="/admin" element={<AdminLayout />}>
           <Route
@@ -58,6 +59,14 @@ function App() {
             element={
               <PrivateRoute role="admin">
                 <Users />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="addProduct"
+            element={
+              <PrivateRoute role="admin">
+                <AddProduct />
               </PrivateRoute>
             }
           />

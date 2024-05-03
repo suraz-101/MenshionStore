@@ -1,19 +1,11 @@
 import { useState } from "react";
+import { useContext } from "react";
 import { useEffect } from "react";
 import { BASE_URL, URLS } from "../contants";
+import { productContext } from "../context/ProductContext";
 import instance from "../utils/api";
 export const Collections = () => {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    const fetchApi = async () => {
-      const products = await instance.get(URLS.PRODUCTS);
-      setData(products.data.product.data);
-      console.log(products.data.product.data);
-    };
-    fetchApi();
-
-    // setData(products.)
-  }, []);
+  const { error, data } = useContext(productContext);
 
   return (
     <div>
