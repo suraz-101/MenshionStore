@@ -23,8 +23,8 @@ app.use(morgan("dev"));
 app.use(`${apiVersion}`, router);
 
 app.use((err, req, res, next) => {
-  error = err ? err.toString() : "Something wend wrong ";
-  res.status(500).json({ message: error });
+  err = err ? err.toString() : "Something wend wrong ";
+  res.status(500).json({ message: err });
 });
 
 app.listen(PORT, (req, res) => {

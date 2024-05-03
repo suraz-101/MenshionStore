@@ -42,9 +42,14 @@ export const products = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response.data.message);
+      return response;
+      //   console.log(response.data.message);
     } catch (err) {
-      setError(err);
+      setError(err.response.data.message);
+
+      setTimeout(() => {
+        setError("");
+      }, 3000);
     }
   };
 

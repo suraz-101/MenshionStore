@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { products } from "../../hooks/product";
+import { Notify } from "../../components/Notify";
 
 export const AddProduct = () => {
   const { addProduct, error } = products();
@@ -33,6 +34,10 @@ export const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addProduct(payload);
+    setTimeout(() => {
+      setPayload({ name: "", price: "", image: "" });
+      setPreview("");
+    }, 3000);
   };
 
   return (
@@ -74,7 +79,7 @@ export const AddProduct = () => {
                       <img src={logo} alt="" height="60px" width="200px" />
                     </Link>
 
-                    {/* {error && <Notify variant="danger" msg={error}></Notify>} */}
+                    {error && <Notify variant="danger" msg={error}></Notify>}
                   </div>
                   <form
                     action=""

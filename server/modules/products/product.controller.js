@@ -1,10 +1,7 @@
 const productSchema = require("./product.model");
 
 const createProduct = (payload) => {
-  const product = productSchema.create(payload);
-  console.log(product)
-  // if (!product) throw new Error("Product could not upload!");
-  return "product added successfully";
+  return productSchema.create(payload);
 };
 
 const getAllProduct = async (search, page = 1, limit = 20) => {

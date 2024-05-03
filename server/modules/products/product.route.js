@@ -33,13 +33,11 @@ router.post(
   checkRole(["user", "admin"]),
   validateProductData,
   async (req, res, next) => {
-    console.log(req.file);
-
     try {
       if (req.file) {
         req.body.image = req.file.path.replace("public", "");
       }
-      console.log(req.body);
+
       const data = req.body;
       const result = await productModel.createProduct(data);
       res.json({ message: result });
