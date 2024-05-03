@@ -3,7 +3,7 @@ const productModel = require("./product.controller");
 const { validateProductData } = require("./product.validate");
 const multer = require("multer");
 const { checkRole } = require("../../utils/sessionManager");
-
+const toProperUpper = require("proper-upper-case");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./public/images");
@@ -39,6 +39,10 @@ router.post(
       }
 
       const data = req.body;
+      const { name } = req.body;
+
+      const capitalName = toProperUpper(name);
+      data.name = capitalName;
       const result = await productModel.createProduct(data);
       res.json({ message: result });
     } catch (error) {

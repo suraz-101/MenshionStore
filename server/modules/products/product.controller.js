@@ -1,7 +1,9 @@
 const productSchema = require("./product.model");
 
-const createProduct = (payload) => {
-  return productSchema.create(payload);
+const createProduct = async (payload) => {
+  await productSchema.create(payload);
+
+  return "product added successfully";
 };
 
 const getAllProduct = async (search, page = 1, limit = 20) => {
