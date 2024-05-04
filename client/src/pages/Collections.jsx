@@ -5,7 +5,8 @@ import { BASE_URL, URLS } from "../contants";
 import { productContext } from "../context/ProductContext";
 import instance from "../utils/api";
 export const Collections = () => {
-  const { error, data } = useContext(productContext);
+  const { error, data, setSort } = useContext(productContext);
+  setSort(1);
 
   return (
     <div>
@@ -31,13 +32,13 @@ export const Collections = () => {
               return (
                 <>
                   <div
-                    className="cards col-lg-3 col-md-4 col-sm-6"
-                    key={product?._id}
+                    className="cards col-lg-3 col-md-4 col-sm-6 "
+                    key={product?.name}
                   >
-                    <div className="card">
+                    <div className="card shadow">
                       <div
                         className="image-section"
-                        style={{ height: "250px" }}
+                        style={{ height: "350px" }}
                       >
                         <img
                           src={BASE_URL.concat(product?.image)}
@@ -48,11 +49,11 @@ export const Collections = () => {
                       </div>
                       <div className="content p-2">
                         <div className="title text-center">
-                          <a href="" className="text-decoration-none">
+                          <a href="" className="text-decoration-none text-dark">
                             <h4> {product?.name}</h4>
                           </a>
                         </div>
-                        <div className="price">{product?.price}</div>
+                        {/* <div className="price">{product?.price}</div> */}
                       </div>
                     </div>
                   </div>

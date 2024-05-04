@@ -129,7 +129,7 @@ body {
   /* z-index: 2; */
 }
 
-.main .header .hamburger {
+.main .header .hamburger-icon {
   display: none;
 }
 .main .header .buttons {
@@ -300,10 +300,10 @@ p {
   .header .navbar {
     display: none;
   }
-  .main .header .hamburger {
+  .main .header .hamburger-icon {
     display: inline-block;
   }
-  .header .hamburger i {
+  .header .hamburger-icon i {
     width: 20%;
     font-size: 30px;
     /* display: block; */

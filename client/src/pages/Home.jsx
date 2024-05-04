@@ -1,4 +1,3 @@
-import React from "react";
 import image1 from "../assets/images/image1.png";
 import image2 from "../assets/images/image2.png";
 import image3 from "../assets/images/image3.png";
@@ -7,8 +6,8 @@ export const Home = () => {
   return (
     <div>
       {" "}
-      <div className="home">
-        <div className="content border p-4">
+      <div className="home border bg-dark ">
+        <div className="content text-white p-4 container">
           <h1>Menshion Store</h1>
           <h4>Get Up to 70% Discount</h4>
           <p>
@@ -24,7 +23,7 @@ export const Home = () => {
           data-aos="fade-left"
           data-aos-delay="800"
         >
-          <img src={image1} alt="" />
+          <img src={image1} alt="" height="100px" width="100px" />
         </div>
         <div
           className="backgroundimage"
@@ -32,10 +31,10 @@ export const Home = () => {
           data-aos="fade-right"
           data-aos-delay="800"
         >
-          <img src={image2} alt="" />
+          <img src={image2} alt="" height="100px" width="100px" />
         </div>
         <div className="backgroundimage" id="image3" data-aos="fade-up">
-          <img src={image3} alt="" />
+          <img src={image3} alt="" height="100px" width="100px" />
         </div>
       </div>
     </div>

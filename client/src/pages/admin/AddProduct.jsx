@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { products } from "../../hooks/product";
 import { Notify } from "../../components/Notify";
 
 export const AddProduct = () => {
-  const { addProduct, error } = products();
+  const navigate = useNavigate();
+  const { addProduct, error, success } = products();
   console.log(error);
 
   const [preview, setPreview] = useState("");
@@ -38,6 +39,7 @@ export const AddProduct = () => {
       setPayload({ name: "", price: "", image: "" });
       setPreview("");
     }, 3000);
+    if (error === " ") navigate("/admin/products");
   };
 
   return (
@@ -79,7 +81,12 @@ export const AddProduct = () => {
                       <img src={logo} alt="" height="60px" width="200px" />
                     </Link>
 
-                    {error && <Notify variant="danger" msg={error}></Notify>}
+                    {(error || success) &&
+                      (error ? (
+                        <Notify variant="danger" msg={error}></Notify>
+                      ) : (
+                        <Notify variant="success" msg={success}></Notify>
+                      ))}
                   </div>
                   <form
                     action=""

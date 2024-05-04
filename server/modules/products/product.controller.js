@@ -6,13 +6,21 @@ const createProduct = async (payload) => {
   return "product added successfully";
 };
 
-const getAllProduct = async (search, page = 1, limit = 20) => {
+const getAllProduct = async (search, page = 1, limit = 20, sort = 1) => {
   const query = [];
 
   if (search?.product) {
     query.push({
       $match: {
         name: new RegExp(`${search?.product}`, "gi"),
+      },
+    });
+  }
+
+  if (sort) {
+    query.push({
+      $sort: {
+        createdAt: Number(sort),
       },
     });
   }

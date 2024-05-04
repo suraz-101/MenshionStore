@@ -8,7 +8,7 @@ import { products } from "../../hooks/product";
 
 export const Products = () => {
   const { data, error } = useContext(productContext);
-  const { deleteProduct, addProduct } = products();
+  const { deleteProduct } = products();
 
   const handleDelete = (name) => {
     console.log(name);
@@ -45,7 +45,7 @@ export const Products = () => {
                 data?.map((d, index) => {
                   return (
                     <>
-                      <tr>
+                      <tr key={d.name}>
                         <th scope="row">{index + 1}</th>
                         <td>
                           <img
