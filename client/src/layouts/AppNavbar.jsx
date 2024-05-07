@@ -6,14 +6,13 @@ export const AppNavbar = () => {
   const currentPath = pathname.split("/")[1];
   // console.log(currentPath);
 
-  const style = { backgroundColor: "black", color: "white" };
-  const active = "bg-dark text-white";
+  const active = "bg-dark text-white rounded";
   console.log(active);
 
   return (
     <div>
       <div>
-        <div className="header container d-flex container  justify-content-between  ">
+        <div className="header container d-flex container  justify-content-between  align-items-center">
           <div className="logo ">
             <img src={logo} alt="" height="40px" />
           </div>

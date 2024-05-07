@@ -8,3 +8,7 @@ export const getToken = (key) => {
 export const removeToken = () => {
   return localStorage.removeItem("token");
 };
+
+export const removeUser = () => {
+  return localStorage.removeItem("currentUser");
+};

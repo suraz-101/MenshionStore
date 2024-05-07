@@ -12,7 +12,7 @@ export const ProductContextProvider = ({ children }) => {
 
   useEffect(() => {
     getAllProducts({ sort });
-  }, [sort]);
+  }, [sort, getAllProducts]);
   return (
     <productContext.Provider value={{ data, error, sort, setSort }}>
       {children}

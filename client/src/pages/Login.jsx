@@ -5,7 +5,7 @@ import { URLS } from "../contants";
 import instance from "../utils/api";
 import { setToken } from "../utils/session";
 import { Notify } from "../components/Notify";
-import { jwtDecode } from "jwt-decode";
+import { createUser, getUser } from "../utils/loginVerification";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ export const Login = () => {
 
       const response = await instance.post(URLS.LOGIN, credential);
       setToken(response.data.message);
+      createUser();
       navigate("/admin");
     } catch (err) {
       console.log("err", err);

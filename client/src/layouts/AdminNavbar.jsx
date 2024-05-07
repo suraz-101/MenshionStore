@@ -45,9 +45,9 @@ export const AdminNavbar = () => {
                   <i className="fa fa-file"></i> products
                 </Link>
               </li>
+              <hr />
             </ul>
           </div>
-          <hr />
         </div>
       </div>
     </>
