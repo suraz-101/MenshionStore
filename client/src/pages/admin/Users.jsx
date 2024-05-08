@@ -23,6 +23,7 @@ export const Users = () => {
             <thead className="thead-light">
               <tr>
                 <th scope="col">S.N.</th>
+                {/* <th scope="col">Profile Pic</th> */}
                 <th scope="col">Full Name</th>
                 <th scope="col">email</th>
                 <th scope="col">Phone Number</th>
@@ -36,7 +37,7 @@ export const Users = () => {
                   return (
                     <>
                       <tr key={user.name}>
-                        <th scope="row">{index + 1}</th>
+                        <th scope="row ">{index + 1}</th>
 
                         <td>{user.name}</td>
                         <td>{user.email}</td>

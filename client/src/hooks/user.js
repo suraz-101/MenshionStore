@@ -13,7 +13,6 @@ export const usersData = () => {
           token: localStorage.getItem("token"),
         },
       });
-      console.log(response);
       setUsers(response.data.users);
     } catch (error) {
       setErr(error);
