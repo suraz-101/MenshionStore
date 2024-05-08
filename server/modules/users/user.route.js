@@ -2,6 +2,7 @@ const route = require("express").Router();
 const userController = require("./user.controller");
 const { userValidation } = require("./user.validate");
 const { checkRole } = require("../../utils/sessionManager");
+const toUpperCase = require("proper-upper-case");
 
 route.get("/", async (req, res, next) => {
   try {
@@ -14,6 +15,9 @@ route.get("/", async (req, res, next) => {
 
 route.post("/", userValidation, async (req, res, next) => {
   try {
+    const { name } = req.body;
+    const modifiedName = toUpperCase(name);
+    req.body.name = modifiedName;
     const result = await userController.registerUser(req.body);
     console.log(req.body);
     res.json({ data: result });

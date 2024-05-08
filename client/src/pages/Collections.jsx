@@ -10,7 +10,7 @@ export const Collections = () => {
 
   return (
     <div>
-      <div className="newarrivals p-4" id="collections">
+      <div className="newarrivals p-4 bg-light" id="collections">
         <h1 className="heading">Our Collections</h1>
         <div className="border p-2 mb-3  d-flex justify-content-between">
           <button className="btn btn-outline-none border border-dark px-4">

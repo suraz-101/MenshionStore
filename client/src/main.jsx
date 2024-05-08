@@ -6,13 +6,16 @@ import "./assets/css/style.css";
 
 import { BrowserRouter } from "react-router-dom";
 import { ProductContextProvider } from "./context/ProductContext.jsx";
+import { UserContextProvider } from "./context/userContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ProductContextProvider>
-        <App />
-      </ProductContextProvider>
+      <UserContextProvider>
+        <ProductContextProvider>
+          <App />
+        </ProductContextProvider>
+      </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

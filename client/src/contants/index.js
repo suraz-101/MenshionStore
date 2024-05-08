@@ -6,4 +6,5 @@ export const URLS = {
   PRODUCTS: API_VERSION + "/products",
   LOGIN: API_VERSION + "/users/login",
   REGISTER: API_VERSION + "/users",
+  USERS: API_VERSION + "/users",
 };

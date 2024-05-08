@@ -11,7 +11,7 @@ const createUser = (payload) => {
 };
 
 const getAllUsers = () => {
-  return userModel.find();
+  return userModel.find().select("-_id");
 };
 
 const getUser = (_id) => {};
