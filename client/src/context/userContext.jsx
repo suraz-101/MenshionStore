@@ -10,11 +10,11 @@ export const UserContextProvider = ({ children }) => {
   //   const [sort, setSort] = useState(1);
   const { users, err, getAllUsers } = usersData();
 
-  useEffect(() => {
-    getAllUsers();
-  }, [getAllUsers]);
+  // useEffect(() => {
+  //   getAllUsers();
+  // }, [getAllUsers]);
   return (
-    <userContext.Provider value={{ users, err }}>
+    <userContext.Provider value={{ users, err, getAllUsers }}>
       {children}
     </userContext.Provider>
   );

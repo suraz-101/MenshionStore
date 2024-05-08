@@ -1,15 +1,21 @@
 import React from "react";
 import { useEffect } from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../../contants";
 import { userContext } from "../../context/userContext";
 
 export const Users = () => {
-  const { users, err } = useContext(userContext);
+  const { users, err, getAllUsers } = useContext(userContext);
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    getAllUsers();
+  }, [getAllUsers]);
   return (
     <div className="col-lg-9 p-4">
-      <div className="col-11 shadow m-auto ">
+      <div className="col-11 shadow m-auto p-4">
         <div className="d-flex justify-content-between align-items-center p-4 ">
           <h3>Users Lists </h3>
           {/* <Link to="/admin/addProduct">
@@ -17,6 +23,21 @@ export const Users = () => {
               Add Users<i className="fa fa-plus mx-2"></i>
             </button>
           </Link> */}
+        </div>
+        <div className="search py-2 cobntain">
+          <div className="input-group">
+            <span className="input-group-text btn button" id="basic-addon1">
+              <i className="fa fa-search"></i>
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search Users"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          </div>
         </div>
         <div className="border mt-2 p-4">
           <table className="table">

@@ -10,7 +10,7 @@ const createUser = (payload) => {
   return userModel.create(payload);
 };
 
-const getAllUsers = () => {
+const getAllUsers = async () => {
   return userModel.find().select("-_id");
 };
 
