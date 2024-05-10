@@ -5,6 +5,7 @@ import instance from "../utils/api";
 
 export const products = () => {
   const [data, setData] = useState([]);
+  const [newArrivals, setNewArrivals] = useState([]);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -21,14 +22,33 @@ export const products = () => {
     }
   }, []);
 
-  const getAllProducts = useCallback(async ({ sort }) => {
+  const getAllProducts = useCallback(async ({ sort, page, limit }) => {
     try {
-      const response = await instance.get(URLS.PRODUCTS + `?sort=${sort}`, {
-        headers: {
-          token: localStorage.getItem("token"),
-        },
-      });
-      setData(response.data.product.data);
+      const response = await instance.get(
+        URLS.PRODUCTS + `?page=${page}&limit=${limit}&sort=${sort}`,
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      );
+
+      setData(response.data.product);
+    } catch (err) {
+      setError(err);
+    }
+  }, []);
+  const getNewArrivals = useCallback(async ({ sort, page, limit }) => {
+    try {
+      const response = await instance.get(
+        URLS.PRODUCTS + `/newArrivals?page=${page}&limit=${limit}&sort=${sort}`,
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      );
+      setNewArrivals(response.data.product);
     } catch (err) {
       setError(err);
     }
@@ -54,5 +74,14 @@ export const products = () => {
     }
   };
 
-  return { getAllProducts, data, error, deleteProduct, addProduct, success };
+  return {
+    getAllProducts,
+    data,
+    error,
+    deleteProduct,
+    addProduct,
+    success,
+    getNewArrivals,
+    newArrivals,
+  };
 };

@@ -2,26 +2,23 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
+import { Paginate } from "../components/Paginate";
 import { BASE_URL } from "../contants";
 import { productContext } from "../context/ProductContext";
 
 export const NewArrivals = () => {
-  const { data, setSort } = useContext(productContext);
-  const [newArrivals, setNewArrivals] = useState([]);
+  const { newArrivals, setSort, page, setPage } = useContext(productContext);
   useEffect(() => {
     setSort(-1);
-    setNewArrivals(data.slice(0, 2));
-  }, [setSort, data]);
-  // setNewArrivals(data.slice(0, 1));
-  // data.slice(0, 1);
-  // setNewArrivals(data.slice(0, 2));
+  }, [setSort]);
+
   return (
     <>
       <div className="newarrivals p-4" id="collections">
         <h1 className="heading">New Arrivals</h1>
         <div className="cards-wrapper container m-auto row">
-          {newArrivals?.length > 0 ? (
-            newArrivals.map((product) => {
+          {newArrivals?.data?.length > 0 ? (
+            newArrivals?.data?.map((product) => {
               return (
                 <>
                   <div
@@ -56,6 +53,14 @@ export const NewArrivals = () => {
           ) : (
             <>No Data Found</>
           )}
+        </div>
+        <div className="pagination">
+          <Paginate
+            limit={newArrivals?.limit}
+            total={newArrivals?.total}
+            page={page}
+            setPage={setPage}
+          />
         </div>
       </div>
     </>

@@ -9,12 +9,16 @@ export const userContext = createContext(null);
 export const UserContextProvider = ({ children }) => {
   //   const [sort, setSort] = useState(1);
   const { users, err, getAllUsers } = usersData();
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(20);
 
   // useEffect(() => {
   //   getAllUsers();
   // }, [getAllUsers]);
   return (
-    <userContext.Provider value={{ users, err, getAllUsers }}>
+    <userContext.Provider
+      value={{ users, err, getAllUsers, page, setPage, limit, setLimit }}
+    >
       {children}
     </userContext.Provider>
   );

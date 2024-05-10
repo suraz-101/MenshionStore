@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useContext } from "react";
 import { useEffect } from "react";
+import { Paginate } from "../components/Paginate";
 import { BASE_URL, URLS } from "../contants";
 import { productContext } from "../context/ProductContext";
-import instance from "../utils/api";
 export const Collections = () => {
-  const { error, data, setSort } = useContext(productContext);
-  setSort(1);
+  const { error, data, setSort, page, setPage } = useContext(productContext);
+  useEffect(() => {
+    setSort(1);
+  }, [setSort, data]);
 
   return (
     <div>
@@ -27,8 +29,8 @@ export const Collections = () => {
           </button>
         </div>
         <div className="cards-wrapper container m-auto row">
-          {data?.length > 0 ? (
-            data.map((product) => {
+          {data?.data?.length > 0 ? (
+            data?.data.map((product) => {
               return (
                 <>
                   <div
@@ -63,6 +65,14 @@ export const Collections = () => {
           ) : (
             <>No Data Found</>
           )}
+        </div>
+        <div className="pagination">
+          <Paginate
+            limit={data?.limit}
+            total={data?.total}
+            page={page}
+            setPage={setPage}
+          />
         </div>
       </div>
     </div>

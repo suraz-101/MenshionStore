@@ -28,6 +28,19 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/newArrivals", async (req, res, next) => {
+  try {
+    // console.log(sort);
+    const { product, page, limit, sort } = req.query;
+    const search = { product };
+    const result = await productModel.getAllProduct(search, page, limit, sort);
+    console.log(result);
+    res.json({ product: result });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post(
   "/",
   upload.single("image"),

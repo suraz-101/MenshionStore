@@ -6,7 +6,7 @@ const createProduct = async (payload) => {
   return "product added successfully";
 };
 
-const getAllProduct = async (search, page = 1, limit = 20, sort = 1) => {
+const getAllProduct = async (search, page = 1, limit = 2, sort = 1) => {
   const query = [];
 
   if (search?.product) {
