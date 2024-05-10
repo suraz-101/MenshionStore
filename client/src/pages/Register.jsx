@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoIcon from "../assets/images/logo.png";
@@ -14,20 +15,39 @@ export const Register = () => {
     password: "",
     gender: "",
   });
-
+  const [loading, setLoading] = useState("Register");
   const [error, setrError] = useState("");
-  //   const [success, setSuccess] = useState("");
+  const [success, setSuccess] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setLoading("Registering *");
+      setInterval(() => {
+        setLoading((prevLoading) => {
+          switch (prevLoading) {
+            case "Registering *":
+              return "Registering **";
+            case "Registering **":
+              return "Registering ***";
+            case "Registering ***":
+              return "Registering *";
+            default:
+              return "Register";
+          }
+        });
+      }, 500);
+      setDisabled(true);
       const response = await instance.post(URLS.REGISTER, payload);
+      setSuccess(response?.data.data);
       navigate("/login");
-      console.log(response);
     } catch (err) {
-      setrError(err);
+      console.log(err.response.data);
+      setrError(err.response.data.message);
     }
   };
+
   return (
     <div>
       <div>
@@ -191,15 +211,22 @@ export const Register = () => {
                         </div>
                       </div>
                       <div className="text-center">
-                        {error && <Notify variant="danger" msg={error} />}
+                        {(error || success) && error ? (
+                          <Notify variant="danger" msg={error} />
+                        ) : success ? (
+                          <Notify variant="success" msg={success} />
+                        ) : (
+                          <></>
+                        )}
                       </div>
 
                       <button
                         type="submit"
                         id="regsiterButton"
                         className="btn col-sm-5 m-auto mb-2 border border-dark "
+                        disabled={disabled}
                       >
-                        Register
+                        {loading}
                       </button>
                       <label className="p-2 d-flex justify-content-center align-items-center">
                         Already have an account?
