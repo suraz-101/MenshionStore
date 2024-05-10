@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from "../../contants";
 import { productContext } from "../../context/ProductContext";
 import { products } from "../../hooks/product";
+import { Paginate } from "../../components/Paginate";
 
 export const Products = () => {
-  const { data, error } = useContext(productContext);
+  const { data, error, page, setPage } = useContext(productContext);
   const { deleteProduct } = products();
 
   const handleDelete = (name) => {
@@ -41,8 +42,8 @@ export const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.length > 0 ? (
-                data?.map((d, index) => {
+              {data?.data?.length > 0 ? (
+                data?.data.map((d, index) => {
                   return (
                     <>
                       <tr key={d.name}>
@@ -88,6 +89,18 @@ export const Products = () => {
               )}
             </tbody>
           </table>
+        </div>
+        <div className="pagination">
+          {data?.data?.length > 0 ? (
+            <Paginate
+              limit={data?.limit}
+              total={data?.total}
+              page={page}
+              setPage={setPage}
+            />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>
