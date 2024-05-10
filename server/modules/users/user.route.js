@@ -6,7 +6,8 @@ const toUpperCase = require("proper-upper-case");
 
 route.get("/", async (req, res, next) => {
   try {
-    const result = await userController.getAllUsers();
+    const { page, limit } = req.query;
+    const result = await userController.getAllUsers({ page, limit });
     res.json({ users: result });
   } catch (error) {
     next(error);

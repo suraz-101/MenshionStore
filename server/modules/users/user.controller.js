@@ -10,8 +10,45 @@ const createUser = (payload) => {
   return userModel.create(payload);
 };
 
-const getAllUsers = async () => {
-  return userModel.find().select("-_id");
+const getAllUsers = async ({ page = 1, limit = 20 }) => {
+  const result = await userModel.aggregate([
+    {
+      $project: {
+        _id: 0,
+      },
+    },
+    {
+      $facet: {
+        metadata: [
+          {
+            $count: "total",
+          },
+        ],
+        data: [
+          {
+            $skip: (+page - 1) * +limit,
+          },
+          {
+            $limit: +limit,
+          },
+        ],
+      },
+    },
+    {
+      $addFields: {
+        total: {
+          $arrayElemAt: ["$metadata.total", 0],
+        },
+      },
+    },
+  ]);
+
+  return {
+    data: result[0].data,
+    total: result[0].total,
+    limit: +limit,
+    page: +page,
+  };
 };
 
 const getUser = (_id) => {};

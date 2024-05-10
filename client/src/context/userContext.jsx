@@ -10,7 +10,7 @@ export const UserContextProvider = ({ children }) => {
   //   const [sort, setSort] = useState(1);
   const { users, err, getAllUsers } = usersData();
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(20);
+  const [limit, setLimit] = useState(5);
 
   // useEffect(() => {
   //   getAllUsers();

@@ -6,13 +6,16 @@ import instance from "../utils/api";
 export const usersData = () => {
   const [users, setUsers] = useState([]);
   const [err, setErr] = useState("");
-  const getAllUsers = useCallback(async () => {
+  const getAllUsers = useCallback(async ({ page, limit }) => {
     try {
-      const response = await instance.get(URLS.USERS, {
-        headers: {
-          token: localStorage.getItem("token"),
-        },
-      });
+      const response = await instance.get(
+        URLS.USERS + `?page=${page}&limit=${limit}`,
+        {
+          headers: {
+            token: localStorage.getItem("token"),
+          },
+        }
+      );
       setUsers(response.data.users);
     } catch (error) {
       setErr(error);

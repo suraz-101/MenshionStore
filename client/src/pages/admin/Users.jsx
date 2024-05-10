@@ -5,14 +5,16 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../../contants";
 import { userContext } from "../../context/userContext";
+import { Paginate } from "../../components/Paginate";
 
 export const Users = () => {
-  const { users, err, getAllUsers } = useContext(userContext);
+  const { users, err, getAllUsers, page, setPage, limit, setLimit } =
+    useContext(userContext);
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    getAllUsers();
-  }, [getAllUsers]);
+    getAllUsers({ page, limit, email });
+  }, [getAllUsers, page, limit, email]);
   return (
     <div className="col-lg-9 p-4">
       <div className="col-11 shadow m-auto p-4">
@@ -53,8 +55,8 @@ export const Users = () => {
               </tr>
             </thead>
             <tbody>
-              {users?.length > 0 ? (
-                users?.map((user, index) => {
+              {users?.data?.length > 0 ? (
+                users?.data?.map((user, index) => {
                   return (
                     <>
                       <tr key={user.name}>
@@ -78,6 +80,18 @@ export const Users = () => {
               )}
             </tbody>
           </table>
+        </div>
+        <div className="pagination">
+          {users?.data?.length > 0 ? (
+            <Paginate
+              limit={users?.limit}
+              total={users?.total}
+              page={page}
+              setPage={setPage}
+            />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>
