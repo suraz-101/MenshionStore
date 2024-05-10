@@ -7,7 +7,6 @@ export const AppNavbar = () => {
   // console.log(currentPath);
 
   const active = "bg-dark text-white rounded";
-  console.log(active);
 
   return (
     <div>
@@ -19,7 +18,7 @@ export const AppNavbar = () => {
           <div className="navbar   w-75">
             <Link
               to="/"
-              className={` text-decoration-none text-dark px-4 py-2 ${
+              className={` text-decoration-none text-dark px-4 py-1 ${
                 !currentPath ? active : " "
               }`}
               // style={}
@@ -28,7 +27,7 @@ export const AppNavbar = () => {
             </Link>
             <Link
               to="/about"
-              className={`active text-decoration-none text-dark px-4 py-2 ${
+              className={`active text-decoration-none text-dark px-4  py-1 ${
                 currentPath === "about" ? active : ""
               }`}
             >
@@ -36,7 +35,7 @@ export const AppNavbar = () => {
             </Link>
             <Link
               to="/collection"
-              className={`active text-decoration-none text-dark px-4 py-2 ${
+              className={`active text-decoration-none text-dark px-4  py-1 ${
                 currentPath === "collection" ? active : ""
               }`}
             >
@@ -44,7 +43,7 @@ export const AppNavbar = () => {
             </Link>
             <Link
               to="/contact"
-              className={`active text-decoration-none text-dark px-4 py-2 ${
+              className={`active text-decoration-none text-dark px-4  py-1 ${
                 currentPath === "contact" ? active : ""
               }`}
             >
@@ -52,7 +51,7 @@ export const AppNavbar = () => {
             </Link>
             <Link
               to="/newarrivals"
-              className={`active text-decoration-none text-dark px-4 py-2 ${
+              className={`active text-decoration-none text-dark px-4  py-1 ${
                 currentPath === "newarrivals" ? active : ""
               }`}
             >
@@ -60,7 +59,7 @@ export const AppNavbar = () => {
             </Link>
             <Link
               to="/login"
-              className="active text-decoration-none text-white border border-dark px-4 py-1 bg-dark rounded"
+              className="active text-decoration-none text-white border border-dark  px-4 py-1 bg-dark "
             >
               LOGIN
             </Link>
@@ -73,8 +72,8 @@ export const AppNavbar = () => {
         <div className=" row container header2 position1  d-flex justify-content-between m-auto  py-2 ">
           <div className="col-lg-6 icons   d-flex justify-content-between  align-items-center">
             <p>
-              <i className="a fa-map-marker text-dark"></i> Shutter-a/24, Buddha
-              Bishal Bazar, Pokhara, Nepal{" "}
+              <i className="fa fa-map-marker text-primary fs-1 "></i>{" "}
+              Shutter-a/24, Buddha Bishal Bazar, Pokhara, Nepal{" "}
             </p>
           </div>
           <div className="col-lg-2 icons   d-flex justify-content-between  align-items-center">
