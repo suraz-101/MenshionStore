@@ -87,10 +87,10 @@ export const AppNavbar = () => {
           </div>
         </div>
         <div className=" row container header2 position1  d-flex justify-content-between m-auto  py-2 ">
-          <div className="col-lg-6 icons   d-flex justify-content-between  align-items-center ">
-            <p className="d-sm-none d-lg-flex">
-              <i className="fa fa-map-marker text-primary fs-1  "></i>{" "}
-              Shutter-a/24, Buddha Bishal Bazar, Pokhara, Nepal{" "}
+          <div className="col-lg-7 icons   d-flex justify-content-between  align-items-center ">
+            <p className="d-sm-none d-lg-flex justify-content-center align-items-center">
+              <i className="fa fa-map-marker text-primary fs-1 mx-3 "></i>
+              Shutter-a/24, Buddha Bishal Bazar, Pokhara, Nepal
             </p>
           </div>
           <div className="col-lg-2 col-sm-4 icons   d-flex justify-content-between  align-items-center">

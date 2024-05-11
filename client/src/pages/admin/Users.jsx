@@ -6,15 +6,24 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from "../../contants";
 import { userContext } from "../../context/userContext";
 import { Paginate } from "../../components/Paginate";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export const Users = () => {
-  const { users, err, getAllUsers, page, setPage, limit, setLimit } =
+  const { users, user, err, getAllUsers, page, setPage, limit, setLimit } =
     useContext(userContext);
   const [email, setEmail] = useState("");
+  const [value, setValue] = useState("");
+  const debounceSearchTerm = useDebounce(value, 500);
+
+  useEffect(() => {
+    setEmail(debounceSearchTerm);
+  }, [debounceSearchTerm]);
 
   useEffect(() => {
     getAllUsers({ page, limit, email });
   }, [getAllUsers, page, limit, email]);
+
+  console.log(user);
   return (
     <div className="col-lg-9 p-4">
       <div className="col-11 shadow m-auto p-4">
@@ -36,7 +45,7 @@ export const Users = () => {
               className="form-control"
               placeholder="Search Users"
               onChange={(e) => {
-                setEmail(e.target.value);
+                setValue(e.target.value);
               }}
             />
           </div>

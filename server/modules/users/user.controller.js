@@ -10,8 +10,19 @@ const createUser = (payload) => {
   return userModel.create(payload);
 };
 
-const getAllUsers = async ({ page = 1, limit = 20 }) => {
-  const result = await userModel.aggregate([
+const getAllUsers = async ({ page = 1, limit = 20, search }) => {
+  console.log(search?.email, "is email sent from frontend");
+  const query = [];
+
+  if (search?.email) {
+    query.push({
+      $match: {
+        email: new RegExp(search.email, "gi"),
+      },
+    });
+  }
+
+  query.push(
     {
       $project: {
         _id: 0,
@@ -40,8 +51,9 @@ const getAllUsers = async ({ page = 1, limit = 20 }) => {
           $arrayElemAt: ["$metadata.total", 0],
         },
       },
-    },
-  ]);
+    }
+  );
+  const result = await userModel.aggregate(query);
 
   return {
     data: result[0].data,
@@ -49,6 +61,11 @@ const getAllUsers = async ({ page = 1, limit = 20 }) => {
     limit: +limit,
     page: +page,
   };
+};
+
+const getUserByEmail = async (email) => {
+  console.log(email);
+  return await userModel.findOne({ email });
 };
 
 const getUser = (_id) => {};
@@ -107,4 +124,5 @@ module.exports = {
   loginUser,
   registerUser,
   resetPassword,
+  getUserByEmail,
 };

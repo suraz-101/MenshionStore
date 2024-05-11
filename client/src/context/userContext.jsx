@@ -8,7 +8,7 @@ export const userContext = createContext(null);
 
 export const UserContextProvider = ({ children }) => {
   //   const [sort, setSort] = useState(1);
-  const { users, err, getAllUsers } = usersData();
+  const { users, err, getAllUsers, getSingleUser, user } = usersData();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
 
@@ -17,7 +17,17 @@ export const UserContextProvider = ({ children }) => {
   // }, [getAllUsers]);
   return (
     <userContext.Provider
-      value={{ users, err, getAllUsers, page, setPage, limit, setLimit }}
+      value={{
+        users,
+        user,
+        err,
+        getAllUsers,
+        page,
+        setPage,
+        limit,
+        setLimit,
+        getSingleUser,
+      }}
     >
       {children}
     </userContext.Provider>
