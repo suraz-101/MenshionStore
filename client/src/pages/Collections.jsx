@@ -14,7 +14,7 @@ export const Collections = () => {
     <div>
       <div className="newarrivals p-4 bg-light" id="collections">
         <h1 className="heading">Our Collections</h1>
-        <div className="border p-2 mb-3  d-flex justify-content-between">
+        {/* <div className="border p-2 mb-3  d-flex justify-content-between">
           <button className="btn btn-outline-none border border-dark px-4">
             All
           </button>
@@ -27,14 +27,14 @@ export const Collections = () => {
           <button className="btn btn-outline-none border border-dark px-4">
             Shoes
           </button>
-        </div>
+        </div> */}
         <div className="cards-wrapper container m-auto row">
           {data?.data?.length > 0 ? (
             data?.data.map((product) => {
               return (
                 <>
                   <div
-                    className="cards col-lg-3 col-md-4 col-sm-6 "
+                    className="cards col-lg-3 col-md-4 col-sm-6 mt-2"
                     key={product?.name}
                   >
                     <div className="card shadow">
