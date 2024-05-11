@@ -37,7 +37,14 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
 
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminLayout />
+            </PrivateRoute>
+          }
+        >
           <Route
             index
             element={

@@ -70,7 +70,6 @@ export const Users = () => {
                     <>
                       <tr key={user.name}>
                         <th scope="row ">{index + 1}</th>
-
                         <td>{user.name}</td>
                         <td>{user.email}</td>
                         <td>{user.phoneNumber}</td>
